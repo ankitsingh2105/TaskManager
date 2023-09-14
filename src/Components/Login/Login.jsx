@@ -40,30 +40,27 @@ export default function Login() {
   }
 
   const forgotPass = async () => {
-    console.log(passEmail);
     let check = isValidEmail(passEmail);
-    if(!passEmail){
-      toast.error("Please enter email first" , {autoClose:1500});
-      return
+    if (!passEmail) {
+      toast.error("Please enter an email address", { autoClose: 1500 });
+      return;
+    } else if (!check) {
+      toast.error("Please enter a valid email address", { autoClose: 1500 });
+      return;
     }
-    else if(!check){
-      toast.error("Please enter a valid email address" , {autoClose:1500});
-      return
-    }
-    toast.success("Processing" , {autoClose:2000});
-    await sendPasswordResetEmail(auth, passEmail);
-    try {
-        toast.success("Email Sent please check you mail account", { autoClose: 1500 });
-    }
-    catch (e) {
-      console.log(e)
-    }
+    toast.success("Processing", { autoClose: 2000 });
 
+    try {
+      await sendPasswordResetEmail(auth, passEmail);
+      toast.success("Email sent. Please check your email account.", { autoClose: 1500 });
+    } catch (error) {
+      toast.error("Email don't exist", { autoClose: 1500 });
+    }
   }
+
 
   const copyingEmail = (e) => {
     setpassEmail(e.target.value)
-    console.log("this is someething i like to funck-> " , e.target.value);
   }
 
   return (
