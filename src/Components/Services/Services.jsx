@@ -5,7 +5,7 @@ export default function Services(props) {
   return (
     <main id={props.id} className="Services_main">
 
-      <h1>Services</h1>
+      <h1>~ Services ~</h1>
       <img src={teamWork} />
       <br />
       <section>

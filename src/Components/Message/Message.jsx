@@ -28,12 +28,12 @@ export default function Message(props) {
 
     return (
         <main id={id} className="Message_main message_align">
-            <h1>~ Report an error ~</h1>
+            <h1>~ Send us a messgae ~</h1>
             <form onSubmit={handleMessage} className='message_align'>
-                <h4>~ Deliever you error or bug from here ~</h4>
+                <h4>~ Deliever you message from here ~</h4>
                 <input required placeholder="Name" type="text" name='name' />
                 <input required placeholder='Email' type="email" name='email' />
-                <textarea required placeholder='Enter the error' name="message" cols="30" rows="10"></textarea>
+                <textarea required placeholder='Enter the message' name="message" cols="30" rows="10"></textarea>
                 <br />
                 <button>Send</button>
             </form>

@@ -103,19 +103,19 @@ export default function Tasks() {
     const handleSave = async () => {
         let user = auth.currentUser;
         if (!user) {
-            toast.error("Please login" , {autoClose : 1500});
+            toast.error("Please login", { autoClose: 1500 });
             return;
         }
         if (codeData.current.value === "") {
-            toast.error("Please enter some task" , {autoClose:1500});
+            toast.error("Please enter some task", { autoClose: 1500 });
             return;
         }
         else if (date.current.value === "") {
-            toast.error("Please enter due date" , {autoClose:1500});
+            toast.error("Please enter due date", { autoClose: 1500 });
             return;
         }
-        else if(codeTitle.current.value === ""){
-            toast.error("Please enter title" , {autoClose:1500});
+        else if (codeTitle.current.value === "") {
+            toast.error("Please enter title", { autoClose: 1500 });
             return;
         }
         let obj = {
@@ -227,7 +227,7 @@ export default function Tasks() {
             })
         }
         setarray(updatedArray);
-        console.log("this is the array-> "  , array) ;
+        console.log("this is the array-> ", array);
     }
 
     const dayandData = getCurrentTimeAndDay();
@@ -278,7 +278,38 @@ export default function Tasks() {
                         : (
                             <main>
                                 {
-                                    loading ? (<div className="wheel"></div>)
+                                    loading ? (
+                                        <section className='align' >
+                                            <div className="wheel"></div>
+                                            <br />
+                                            <main className='firebaseCodes'>
+                                                <br /><br />
+                                                <b>Task Title : Waiting</b>
+                                                <br /> <br />
+                                                <b>Started on : Waiting</b>
+                                                <br /><br />
+                                                <b>Due Date : Waiting</b>
+                                                <pre>
+                                                    <button className='copyButton'>Dummy - Copy</button>
+                                                    <code className='codeInfo' >Some tasks (if any) will be here soon.
+                                                        <br />
+                                                        Thanks for your patience. While you are here, here is an interesting
+                                                        <br />
+                                                        fact related to website loading: Did you know that Amazon calculated
+                                                        <br />
+                                                        that a page load slowdown of just one second could cost it <br />
+                                                        $1.6 billion in sales each year?</code>
+                                                </pre>
+                                                <button style={{ fontSize: "13px" }} >Dummy - Delete</button>
+                                                &nbsp; &nbsp;
+                                                <button>Dummy - Edit</button>
+                                                <button className='Status' style={{ background: "lightgreen", color: "black" }}>
+                                                    Status :  waiting
+                                                </button>
+                                                <br /><br />
+                                            </main>
+                                        </section>
+                                    )
                                         : (
                                             array?.map((e) => {
                                                 const { codeInfo, dateAndTime, name, codeTitle, dueDate } = e;

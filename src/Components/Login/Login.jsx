@@ -13,8 +13,7 @@ import { Helmet } from 'react-helmet';
 
 export default function Login() {
 
-  const [passEmail, setpassEmail] = useState("op");
-  const emailCheck = useRef();
+  const [passEmail, setpassEmail] = useState("");
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -41,31 +40,30 @@ export default function Login() {
   }
 
   const forgotPass = async () => {
-    console.log("bc1");
+    console.log(passEmail);
+    let check = isValidEmail(passEmail);
+    if(!passEmail){
+      toast.error("Please enter email first" , {autoClose:1500});
+      return
+    }
+    else if(!check){
+      toast.error("Please enter a valid email address" , {autoClose:1500});
+      return
+    }
+    toast.success("Processing" , {autoClose:2000});
     await sendPasswordResetEmail(auth, passEmail);
-    let isEmail = emailCheck.current.value;
-    let check = isValidEmail(isEmail);
     try {
-      // if (check) {
         toast.success("Email Sent please check you mail account", { autoClose: 1500 });
-        // console.log("bc1");
-      // }
-      // else {
-      //   toast.success("Please enter a valid email", { autoClose: 1500 });
-      //   console.log("bc2");
-      // }
-
     }
     catch (e) {
       console.log(e)
-      toast.error("Something went wrong", e, { autoClose: 1500 });
     }
-    console.log("0-")
 
   }
 
   const copyingEmail = (e) => {
     setpassEmail(e.target.value)
+    console.log("this is someething i like to funck-> " , e.target.value);
   }
 
   return (
@@ -81,12 +79,12 @@ export default function Login() {
       </h1>
       <h2>~ Login to you ColabWave account ~</h2>
       <form onSubmit={handleLogin} action="">
-        <input required useRef={emailCheck} type="email" placeholder='Email' name="email" />
-        <input onChange={copyingEmail} required placeholder='Password' type="password" name="password" />
+        <input onChange={copyingEmail} required type="email" placeholder='Email' name="email" />
+        <input required placeholder='Password' type="password" name="password" />
         <button onClick={handleLogin} >Login</button>
         <br />
       </form>
-      <button onClick={forgotPass} >Forgot Password?</button>
+      <button onClick={() => { forgotPass() }} >Forgot Password?</button>
       <h2>Don't have an account? Sign Up here</h2>
       <button onClick={() => { window.location.href = `/signup` }} >Sign Up</button>
       <br /><br />

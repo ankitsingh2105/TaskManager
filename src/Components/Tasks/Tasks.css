@@ -169,42 +169,42 @@ select {
 }
 
 @media screen and (max-width: 1190px) {
-    pre, textarea {
+    pre, .CodeTextArea {
         max-width: 850px;
         min-width: 850px;
     }
 }
 
 @media screen and (max-width: 900px) {
-    pre, textarea {
+    pre, .CodeTextArea {
         max-width: 700px;
         min-width: 700px;
     }
 }
 
 @media screen and (max-width: 740px) {
-    pre, textarea {
+    pre, .CodeTextArea {
         max-width: 500px;
         min-width: 500px;
     }
 }
 
 @media screen and (max-width: 550px) {
-    pre, textarea {
+    pre, .CodeTextArea {
         max-width: 400px;
         min-width: 400px;
     }
 }
 
 @media screen and (max-width: 450px) {
-    pre, textarea {
+    pre, .CodeTextArea {
         max-width: 350px;
         min-width: 350px;
     }
 }
 
 @media screen and (max-width: 390px) {
-    pre, textarea {
+    pre, .CodeTextArea {
         max-width: 320px;
         min-width: 320px;
     }
